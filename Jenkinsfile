@@ -1,5 +1,5 @@
 docker tagname: "alpeza/habmaps_web:latest",  
        dbuild: true,
        pullToRegistry: true, 
-       deploy: false,
+       deploy: true,
        credentialsId: 'dokerhub-user'
