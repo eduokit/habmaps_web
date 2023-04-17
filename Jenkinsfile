@@ -1,5 +1,4 @@
-//sh 'exit 0'
-docker tagname: "alpeza/habmaps_strapi:latest",  
+docker tagname: "alpeza/habmaps_web:latest",  
        dbuild: true,
        pullToRegistry: true, 
        deploy: false,
