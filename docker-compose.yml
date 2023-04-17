@@ -3,6 +3,7 @@ version: '3.9'
 services:
   web:
     image: alpeza/habmaps_web:latest
+    container_name: habmaps_web
     ports:
       - "8991:80"
     networks:
