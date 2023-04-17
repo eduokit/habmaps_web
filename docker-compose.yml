@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  strapi:
+    image: alpeza/habmaps_web:latest
+    ports:
+      - "8990:80"
+    networks:
+      - core_npm_hcinet
+
+networks:
+  core_npm_hcinet:
+    external: true
