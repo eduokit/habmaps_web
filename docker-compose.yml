@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  strapi:
+  web:
     image: alpeza/habmaps_web:latest
     ports:
       - "8990:80"
