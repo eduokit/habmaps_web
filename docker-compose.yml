@@ -5,8 +5,10 @@ services:
     image: alpeza/habmaps_web:latest
     container_name: habmaps_web
     environment:
-      REACT_APP_API_GRAPHQL_URL: http://habmaps_strapi:1337/graphql
-      REACT_APP_API_URL: http://habmaps_strapi:1337
+      #REACT_APP_API_GRAPHQL_URL: http://habmaps_strapi:1337/graphql
+      #REACT_APP_API_URL: http://habmaps_strapi:1337
+      REACT_APP_API_GRAPHQL_URL: http://habmaps.admin.eduokit.com/graphql
+      REACT_APP_API_URL: http://habmaps.admin.eduokit.com
     ports:
       - "8991:80"
     networks:
