@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client'
 import { getImageUrl } from '../../util/util'
+import GradientTitle from '../components/gradientTitle'
 
 const Navbar = () => {
     const { loading, error, data } = useQuery(gql`
@@ -36,7 +37,7 @@ const Navbar = () => {
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="/" className="flex items-center">
                     <img src={logo} className="h-8 mr-3" alt={title} />
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{title}</span>
+                    <span className="self-center text-2xl whitespace-nowrap dark:text-white"><GradientTitle>{title}</GradientTitle></span>
                 </a>
                 <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
                     <span className="sr-only">Open main menu</span>
