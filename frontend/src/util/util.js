@@ -15,7 +15,7 @@ const getImageUrl = (path) => {
       path = path.substring(1);
     }
     path = path.trim();
-    return `${process.env.REACT_APP_API_URL}/${path}`;
+    return `${env.REACT_APP_API_URL}/${path}`;
   };
 
 export { getApiUrl, getGraphqlUrl, getImageUrl };
