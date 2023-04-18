@@ -1,8 +1,7 @@
 
 import {env} from '../env'
-
-console.log(process.env)
 console.log(env)
+
 const getApiUrl = () => {
   return env.REACT_APP_API_URL;
 };
