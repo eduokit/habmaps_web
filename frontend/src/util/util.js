@@ -1,13 +1,14 @@
 
+import {env} from '../env'
+
 console.log(process.env)
-
-
+console.log(env)
 const getApiUrl = () => {
-  return process.env.REACT_APP_API_URL;
+  return env.REACT_APP_API_URL;
 };
 
 const getGraphqlUrl = () => {
-  return process.env.REACT_APP_API_GRAPHQL_URL;
+  return env.REACT_APP_API_GRAPHQL_URL;
 };
 
 const getImageUrl = (path) => {
