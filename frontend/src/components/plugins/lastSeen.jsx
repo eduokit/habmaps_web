@@ -1,61 +1,26 @@
-import React, { useState } from "react";
-import { useQuery, gql } from '@apollo/client'
 import GradientBadge from "../components/gradientBadge";
+import useLastSeens from "../../hooks/lastSeen";
+import Skeleton from "../components/skeleton";
+import JsonTable from "../components/jsonTable";
+import TDate from "../components/TDate";
 
 const LastSeen = () => {
 
-    const { loading, error, data } = useQuery(gql`
-        query {
-            lastSeens ( 
-                sort: "publishedAt:desc"
-                ){
-                data {
-                attributes {
-                    nameId
-                    lastSeen
-                    pos {
-                    lat
-                    lon
-                    }
-                    type
-                    counter
-                    payload
-                }
-                }
-            }
-        }
-    `)
-
-    const convertToDataArray = (jsonData) => {
-        const dataArray = jsonData.lastSeens.data.map((item) => {
-            const { attributes } = item;
-            return {
-                nameId: attributes.nameId,
-                lastSeen: attributes.lastSeen,
-                pos: attributes.pos,
-                type: attributes.type,
-                counter: attributes.counter,
-                payload: attributes.payload,
-            };
-        });
-        return dataArray;
-    };
+    const { loading, error, lastSeens } = useLastSeens();
 
     if (error) {
         return <div>Oops! Something went wrong.</div>;
     } else if (loading) {
-        return <div>Loading...</div>;
+        return <Skeleton></Skeleton>
     } else {
-        console.log(data)
-        const dat = convertToDataArray(data)
-        console.log(dat)
+        console.log(lastSeens)
         return (
             <div>
-                <div class="relative overflow-x-auto  shadow m-4 sm:rounded-lg">
+                <div class="relative overflow-x-auto  shadow-2xl m-6 sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-slate-800 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-3 py-3">
                                     Name
                                 </th>
                                 <th scope="col" class="px-6 py-3">
@@ -76,13 +41,13 @@ const LastSeen = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {dat.map((item, index) => (
-                                <tr key={index} className={`bg-${index % 2 === 0 ? "white" : "gray-50"} border-b dark:bg-gray-800 dark:border-gray-700`}>
+                            {lastSeens.map((item, index) => (
+                                <tr key={index} className={`bg-${index % 2 === 0 ? "white" : "gray-50"} border-b dark:bg-slate-900 dark:border-gray-700`}>
                                     <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {item.nameId}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {item.lastSeen}
+                                        <TDate>{item.lastSeen}</TDate>
                                     </td>
                                     <td className="px-6 py-4">
                                         {`${item.pos.lat}, ${item.pos.lon}`}
@@ -94,7 +59,8 @@ const LastSeen = () => {
                                         {item.counter}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {JSON.stringify(item.payload)}
+                                        <JsonTable data={item.payload}></JsonTable>
+
                                     </td>
                                 </tr>
                             ))}

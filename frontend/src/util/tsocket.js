@@ -1,8 +1,9 @@
+import {env} from '../env'
 const { io } = require("socket.io-client");
-const SERVER_URL = "http://localhost:1337";
-const socket = io(SERVER_URL);
 
-console.log("Iniciando sockets !!!!!");
+const socket = io(env.REACT_APP_API_URL);
+
+console.log("Iniciando socketsxxx !!!!!");
 //  wait until socket connects before adding event listeners
 socket.on("connect", () => {
 
