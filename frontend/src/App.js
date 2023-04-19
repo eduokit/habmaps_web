@@ -5,6 +5,8 @@ import MapComponent from './components/maps/map';
 import LastSeen from './components/plugins/lastSeen';
 import Footer from './components/web/footer';
 import Sponsors from './components/web/sponsors';
+require('./util/tsocket')
+
 
 function App() {
   return (
